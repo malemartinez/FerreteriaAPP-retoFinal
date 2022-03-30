@@ -5,14 +5,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
-@Document()
+@Document(collection = "Cliente")
 public class Cliente {
 
     @Id
     private String id = UUID.randomUUID().toString().substring(0, 10);
 
     private String nombre;
-    private String celular; ;
+    private String celular;
     private String documentoIdentidad;
 
     public String getId() {

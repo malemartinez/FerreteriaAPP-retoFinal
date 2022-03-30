@@ -1,12 +1,10 @@
 package com.Ferreteria.RetoFinal.Model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
-@Document(collection = "Proveedor")
-public class Proveedor {
+public class Vendedor {
 
     @Id
     private String id = UUID.randomUUID().toString().substring(0, 10);
@@ -17,6 +15,10 @@ public class Proveedor {
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -41,5 +43,15 @@ public class Proveedor {
 
     public void setDocumentoIdentidad(String documentoIdentidad) {
         this.documentoIdentidad = documentoIdentidad;
+    }
+
+    @Override
+    public String toString() {
+        return "Vendedor{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", celular='" + celular + '\'' +
+                ", documentoIdentidad='" + documentoIdentidad + '\'' +
+                '}';
     }
 }
