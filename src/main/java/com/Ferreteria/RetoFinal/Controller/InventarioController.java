@@ -4,6 +4,8 @@ import com.Ferreteria.RetoFinal.Model.Cliente;
 import com.Ferreteria.RetoFinal.Model.DTO.ClienteDTO;
 import com.Ferreteria.RetoFinal.Model.DTO.InventarioDTO;
 import com.Ferreteria.RetoFinal.Model.DTO.ProductoDTO;
+import com.Ferreteria.RetoFinal.Model.Inventario;
+import com.Ferreteria.RetoFinal.Model.Producto;
 import com.Ferreteria.RetoFinal.services.ClienteServices;
 import com.Ferreteria.RetoFinal.services.InventarioServices;
 import org.modelmapper.ModelMapper;
@@ -23,24 +25,20 @@ public class InventarioController {
 
     @PostMapping("/inventario")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<InventarioDTO> save(@RequestBody InventarioDTO inventarioDTO) {
-        return this.inventarioServices.save(inventarioDTO)
-                .flatMap( inventario -> Mono.just(mapper.map(inventario, InventarioDTO.class)));
-
-
+    private Mono<Inventario> save(@RequestBody Inventario inventario) {
+        return this.inventarioServices.save(inventario);
     }
 
-//    @GetMapping("/inventario")
-//    private Flux<InventarioDTO> findAll() {
-//        return this.inventarioServices.findAll();
-//    }
+    @GetMapping("/inventario")
+    private Flux<InventarioDTO> findAll() {
+        return this.inventarioServices.findAll();
+    }
 
-    @PostMapping("/agregarProductos/{cantidad}")
-    private Mono<InventarioDTO> agregarProducto(@RequestBody InventarioDTO inventarioDTO,
-                                                @RequestBody ProductoDTO productoDTO,
-                                                @PathVariable("cantidad") Integer cantidad) {
-        return this.inventarioServices.agregarProducto(inventarioDTO ,productoDTO ,  cantidad)
+    @PutMapping("/inventario/agregar")
+    private Flux<InventarioDTO> updateProducto( @RequestBody Producto producto) {
+        return this.inventarioServices.agregarProducto(producto)
                 .flatMap( inventario -> Mono.just(mapper.map(inventario, InventarioDTO.class)));
 
     }
+
 }

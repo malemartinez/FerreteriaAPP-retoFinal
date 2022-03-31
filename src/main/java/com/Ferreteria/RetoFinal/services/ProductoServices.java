@@ -20,13 +20,16 @@ public class ProductoServices {
         this.mapper = mapper;
     }
 
-    public Mono<Producto> save(ProductoDTO proveedorDTO) {
-        var entidad = mapper.map(proveedorDTO , Producto.class );
-        return this.productoRepository.save(entidad);
+    public Mono<Producto> save(Producto producto) {
+         return this.productoRepository.save(producto);
     }
 
     public Flux<Producto> findAll(){
         return this.productoRepository.findAll();
+    }
+
+    public Mono<Producto> findbyID(String id){
+        return this.productoRepository.findById(id);
     }
 
     public Mono<ProductoDTO> delete(String id) {
@@ -38,11 +41,14 @@ public class ProductoServices {
     }
 
     public Mono<ProductoDTO> update(String id, ProductoDTO productoDTO) {
-        var proveedorEntity = mapper.map(productoDTO, Producto.class);
+        var productoEntity = mapper.map(productoDTO, Producto.class);
         return this.productoRepository.findById(id)
                 .flatMap( producto -> {
-                    producto.setNombre(proveedorEntity.getNombre());
-                    return this.save(mapper.map(producto, ProductoDTO.class));
+                    producto.setNombre(productoEntity.getNombre());
+                    producto.setPrecio(productoEntity.getPrecio());
+                    producto.setCantidad(productoEntity.getCantidad());
+                    producto.setIdProveedor(producto.getIdProveedor());
+                    return this.save(producto);
                 })
                 .flatMap( producto -> Mono.just(mapper.map( producto , ProductoDTO.class ))  )
                 .switchIfEmpty(Mono.empty());

@@ -14,15 +14,13 @@ public class Producto {
     private String nombre;
     private Double precio;
     private String idProveedor;
+    private Integer cantidad;
 
-    @Override
-    public String toString() {
-        return "Producto{" +
-                "nombre='" + nombre + '\'' +
-                ", precio=" + precio +
-                ", idProveedor='" + idProveedor + '\'' +
-                '}';
-    }
+
+
+    public Producto(){}
+
+
 
     public String getId() {
         return id;
@@ -50,5 +48,26 @@ public class Producto {
 
     public void setIdProveedor(String idProveedor) {
         this.idProveedor = idProveedor;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", idProveedor='" + idProveedor + '\'' +
+                '}';
     }
 }

@@ -1,21 +1,22 @@
 package com.Ferreteria.RetoFinal.Model.DTO;
 
-import java.util.UUID;
-
 public class ProductoDTO {
 
     private String id ;
     private String nombre;
     private Double precio;
     private String idProveedor;
+    private Integer cantidad;
 
-
-    public ProductoDTO(String id, String nombre, Double precio, String idProveedor) {
+    public ProductoDTO(String id, String nombre, Double precio, String idProveedor, Integer cantidad) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.idProveedor = idProveedor;
+        this.cantidad = cantidad;
     }
+
+    public ProductoDTO(){}
 
     public String getId() {
         return id;
@@ -47,5 +48,13 @@ public class ProductoDTO {
 
     public void setIdProveedor(String idProveedor) {
         this.idProveedor = idProveedor;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
     }
 }

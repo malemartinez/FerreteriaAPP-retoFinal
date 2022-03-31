@@ -16,6 +16,7 @@ public class VendedorDTO {
         this.celular = celular;
         this.documentoIdentidad = documentoIdentidad;
     }
+    public VendedorDTO(){}
 
     public String getId() {
         return id;

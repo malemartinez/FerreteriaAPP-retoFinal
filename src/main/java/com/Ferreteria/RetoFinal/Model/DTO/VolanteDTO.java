@@ -20,6 +20,7 @@ public class VolanteDTO {
         this.documetoIproveedor = documetoIproveedor;
 
     }
+    public VolanteDTO(){}
 
     @Override
     public String toString() {

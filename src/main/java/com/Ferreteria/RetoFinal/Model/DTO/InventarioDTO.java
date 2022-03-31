@@ -2,19 +2,30 @@ package com.Ferreteria.RetoFinal.Model.DTO;
 
 import com.Ferreteria.RetoFinal.Model.Producto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class InventarioDTO {
 
     private String id;
-    private HashMap<Producto, Integer> productosPrecioInventario = new HashMap<>();
+    private List<Producto> productos = new ArrayList<>();
+    private String name;
 
-    public HashMap<Producto, Integer> getProductosPrecioInventario() {
-        return productosPrecioInventario;
+    public String getName() {
+        return name;
     }
 
-    public void setProductosPrecioInventario(HashMap<Producto, Integer> productosPrecioInventario) {
-        this.productosPrecioInventario = productosPrecioInventario;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
 
     public String getId() {

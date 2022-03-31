@@ -3,6 +3,7 @@ package com.Ferreteria.RetoFinal.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -12,7 +13,16 @@ public class Inventario {
 
     @Id
     private String id = UUID.randomUUID().toString().substring(0, 10);
-    private HashMap<Producto , Integer> productosPrecioInventario = new HashMap<>();
+    private List<Producto> productos = new ArrayList<>();
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getId() {
         return id;
@@ -22,11 +32,11 @@ public class Inventario {
         this.id = id;
     }
 
-    public HashMap<Producto, Integer> getProductosPrecioInventario() {
-        return productosPrecioInventario;
+    public List<Producto> getProductos() {
+        return productos;
     }
 
-    public void setProductosPrecioInventario(HashMap<Producto, Integer> productosPrecioInventario) {
-        this.productosPrecioInventario = productosPrecioInventario;
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
 }
