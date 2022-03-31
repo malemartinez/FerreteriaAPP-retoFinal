@@ -6,13 +6,22 @@ import java.util.HashMap;
 
 public class InventarioDTO {
 
-    private HashMap<Producto, Integer> productosPrecio = new HashMap<>() ;
+    private String id;
+    private HashMap<Producto, Integer> productosPrecioInventario = new HashMap<>();
 
-    public HashMap<Producto, Integer> getProductosPrecio() {
-        return productosPrecio;
+    public HashMap<Producto, Integer> getProductosPrecioInventario() {
+        return productosPrecioInventario;
     }
 
-    public void setProductosPrecio(HashMap<Producto, Integer> productosPrecio) {
-        this.productosPrecio = productosPrecio;
+    public void setProductosPrecioInventario(HashMap<Producto, Integer> productosPrecioInventario) {
+        this.productosPrecioInventario = productosPrecioInventario;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

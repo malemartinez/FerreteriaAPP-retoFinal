@@ -10,7 +10,7 @@ public class Volante {
 
     private String nombreProveedor;
     private LocalDate fecha;
-    private String documetoIproveedor;
+    private String documentoIproveedor;
     private HashMap<Producto, Integer> productosEntregados = new HashMap<>();
 
     public String getNombreProveedor() {
@@ -29,20 +29,19 @@ public class Volante {
         this.fecha = fecha;
     }
 
-    public String getDocumetoIproveedor() {
-        return documetoIproveedor;
-    }
-
-    public void setDocumetoIproveedor(String documetoIproveedor) {
-        this.documetoIproveedor = documetoIproveedor;
-    }
-
-    public HashMap<Producto, Integer> getProductosEntregados() {
+      public HashMap<Producto, Integer> getProductosEntregados() {
         return productosEntregados;
     }
 
     public void setProductosEntregados(HashMap<Producto, Integer> productosEntregados) {
         this.productosEntregados = productosEntregados;
+    }
+    public String getDocumentoIproveedor() {
+        return documentoIproveedor;
+    }
+
+    public void setDocumentoIproveedor(String documentoIproveedor) {
+        this.documentoIproveedor = documentoIproveedor;
     }
 
 }
