@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class VendedorDTO {
 
-    private String id = UUID.randomUUID().toString().substring(0, 10);
+    private String id;
 
     private String nombre;
     private String celular;

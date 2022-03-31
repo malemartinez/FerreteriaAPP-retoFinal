@@ -5,7 +5,6 @@ import com.Ferreteria.RetoFinal.Model.DTO.ClienteDTO;
 import com.Ferreteria.RetoFinal.Repository.ClienteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -22,18 +21,36 @@ public class ClienteServices {
     }
 
     public Mono<Cliente> save(ClienteDTO clienteDTO) {
-           Cliente cliente1 = new Cliente();
-           cliente1.setNombre(clienteDTO.getNombre());
-           cliente1.setCelular(clienteDTO.getCelular());
-           cliente1.setDocumentoIdentidad(clienteDTO.getDocumentoIdentidad());
-
-        return this.clienteRepository.save(cliente1);
+        var entidad = mapper.map(clienteDTO , Cliente.class );
+        return this.clienteRepository.save(entidad);
     }
 
     public Flux<Cliente> findAll(){
         return this.clienteRepository.findAll();
+    }
+
+    public Mono<ClienteDTO> delete(String id) {
+        return this.clienteRepository
+                .findById(id)
+                .flatMap(cliente -> this.clienteRepository.deleteById(cliente.getId()).thenReturn(cliente))
+                .flatMap( cliente -> Mono.just( mapper.map(cliente ,ClienteDTO.class ) ) );
 
     }
+
+    public Mono<ClienteDTO> update(String id, ClienteDTO clienteDTO) {
+        var clienteEntity = mapper.map(clienteDTO, Cliente.class);
+        return this.clienteRepository.findById(id)
+                .flatMap( cliente -> {
+                    cliente.setNombre(clienteEntity.getNombre());
+                    return this.save(mapper.map(cliente, ClienteDTO.class));
+                })
+                .flatMap( cliente -> Mono.just(mapper.map( cliente , ClienteDTO.class ))  )
+                .switchIfEmpty(Mono.empty());
+    }
+
+
+
+
 
 
 
