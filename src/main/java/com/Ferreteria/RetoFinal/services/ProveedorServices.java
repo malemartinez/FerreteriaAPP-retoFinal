@@ -3,6 +3,7 @@ package com.Ferreteria.RetoFinal.services;
 import com.Ferreteria.RetoFinal.Model.Cliente;
 import com.Ferreteria.RetoFinal.Model.DTO.ClienteDTO;
 import com.Ferreteria.RetoFinal.Model.DTO.ProveedorDTO;
+import com.Ferreteria.RetoFinal.Model.DTO.VolanteDTO;
 import com.Ferreteria.RetoFinal.Model.Proveedor;
 import com.Ferreteria.RetoFinal.Repository.ProveedorRepository;
 import org.modelmapper.ModelMapper;
@@ -29,6 +30,12 @@ public class ProveedorServices {
 
     public Flux<Proveedor> findAll(){
         return this.proveedorRepository.findAll();
+    }
+    public Mono<ProveedorDTO> findById(String id) {
+        return this.proveedorRepository
+                .findById(id)
+                .flatMap( proveedor -> Mono.just( mapper.map(proveedor ,ProveedorDTO.class ) ) );
+
     }
 
     public Mono<ProveedorDTO> delete(String id) {

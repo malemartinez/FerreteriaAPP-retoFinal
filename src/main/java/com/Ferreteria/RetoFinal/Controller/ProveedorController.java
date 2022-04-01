@@ -1,6 +1,7 @@
 package com.Ferreteria.RetoFinal.Controller;
 
 import com.Ferreteria.RetoFinal.Model.DTO.ProveedorDTO;
+import com.Ferreteria.RetoFinal.Model.DTO.VolanteDTO;
 import com.Ferreteria.RetoFinal.Model.Proveedor;
 
 import com.Ferreteria.RetoFinal.services.ProveedorServices;
@@ -13,7 +14,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 public class ProveedorController {
 
     @Autowired
@@ -33,6 +33,14 @@ public class ProveedorController {
     @GetMapping("/proveedor")
     private Flux<Proveedor> findAll() {
         return this.proveedorServices.findAll();
+    }
+
+    @GetMapping("/proveedor/{id}")
+    private Mono<ResponseEntity<ProveedorDTO>> findById(@PathVariable("id") String id) {
+        return this.proveedorServices.findById(id)
+                .flatMap(proveedor -> Mono.just(ResponseEntity.ok(proveedor)))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+
     }
 
     @DeleteMapping("/proveedor/{id}")
