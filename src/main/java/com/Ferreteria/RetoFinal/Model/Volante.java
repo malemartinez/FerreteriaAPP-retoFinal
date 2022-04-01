@@ -11,7 +11,7 @@ import java.util.UUID;
 public class Volante {
 
     @Id
-    private String Id = UUID.randomUUID().toString().substring(0, 10);
+    private String Id;
     private String nombreProveedor;
     private LocalDate fecha;
 

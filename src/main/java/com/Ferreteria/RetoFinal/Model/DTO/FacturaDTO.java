@@ -24,6 +24,8 @@ public class FacturaDTO {
         this.listaProductos = listaProductos;
     }
 
+    public FacturaDTO(){}
+
     public String getId() {
         return id;
     }

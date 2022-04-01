@@ -2,6 +2,7 @@ package com.Ferreteria.RetoFinal.Model;
 
 
 import lombok.NonNull;
+import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 @Document(collection = "Facturas")
 public class Factura {
 
-
+    @Id
     private String id;
     private Integer consecutivo;
     private LocalDate fecha;
