@@ -22,11 +22,16 @@ public class VolanteController {
     @Autowired
     ModelMapper mapper;
 
+    public VolanteController(ModelMapper mapper) {
+        this.mapper = mapper;
+    }
+
     @PostMapping("/volantes")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<VolanteDTO> save(@RequestBody VolanteDTO volanteDTO) {
-        return this.volanteServices.save(volanteDTO)
-                .flatMap( volante -> Mono.just(mapper.map(volante, VolanteDTO.class)));
+    private Mono<Volante> save(@RequestBody VolanteDTO volanteDTO) {
+        var volante = mapper.map(volanteDTO, Volante.class);
+        return this.volanteServices.save(volante);
+
     }
 
     @GetMapping("/volantes")

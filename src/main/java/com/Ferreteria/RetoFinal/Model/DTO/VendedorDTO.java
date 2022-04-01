@@ -10,12 +10,13 @@ public class VendedorDTO {
     private String celular;
     private String documentoIdentidad;
 
-    public VendedorDTO(String id, String nombre, String celular, String documentoIdentidad) {
-        this.id = id;
+    public VendedorDTO( String nombre, String celular, String documentoIdentidad) {
+
         this.nombre = nombre;
         this.celular = celular;
         this.documentoIdentidad = documentoIdentidad;
     }
+
     public VendedorDTO(){}
 
     public String getId() {

@@ -1,36 +1,18 @@
 package com.Ferreteria.RetoFinal.Model.DTO;
 
-import com.Ferreteria.RetoFinal.Model.Producto;
-import org.springframework.data.mongodb.core.mapping.Document;
+import nonapi.io.github.classgraph.json.Id;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 
 
 public class VolanteDTO {
-
+    @Id
+    private String id;
     private String nombreProveedor;
     private LocalDate fecha;
-    private String documetoIproveedor;
-    private HashMap<Producto, Integer> productosEntregados = new HashMap<>();
-
-    public VolanteDTO(String nombreProveedor, LocalDate fecha, String documetoIproveedor) {
-        this.nombreProveedor = nombreProveedor;
-        this.fecha = fecha;
-        this.documetoIproveedor = documetoIproveedor;
-
-    }
-    public VolanteDTO(){}
-
-    @Override
-    public String toString() {
-        return "VolanteDTO{" +
-                "nombreProveedor='" + nombreProveedor + '\'' +
-                ", fecha=" + fecha +
-                ", documetoIproveedor='" + documetoIproveedor + '\'' +
-                ", productosEntregados=" + productosEntregados +
-                '}';
-    }
+    private String documentoIproveedor;
+    private HashMap<String, Integer> productosEntregados = new HashMap<>();
 
     public String getNombreProveedor() {
         return nombreProveedor;
@@ -48,19 +30,34 @@ public class VolanteDTO {
         this.fecha = fecha;
     }
 
-    public String getDocumetoIproveedor() {
-        return documetoIproveedor;
+    public String getDocumentoIproveedor() {
+        return documentoIproveedor;
     }
 
-    public void setDocumetoIproveedor(String documetoIproveedor) {
-        this.documetoIproveedor = documetoIproveedor;
+    public void setDocumentoIproveedor(String documentoIproveedor) {
+        this.documentoIproveedor = documentoIproveedor;
     }
 
-    public HashMap<Producto, Integer> getProductosEntregados() {
+    public VolanteDTO(String nombreProveedor, LocalDate fecha, String documentoIproveedor, HashMap<String, Integer> productosEntregados) {
+        this.nombreProveedor = nombreProveedor;
+        this.fecha = fecha;
+        this.documentoIproveedor = documentoIproveedor;
+        this.productosEntregados = productosEntregados;
+    }
+
+    public HashMap<String, Integer> getProductosEntregados() {
         return productosEntregados;
     }
 
-    public void setProductosEntregados(HashMap<Producto, Integer> productosEntregados) {
+    public void setProductosEntregados(HashMap<String, Integer> productosEntregados) {
         this.productosEntregados = productosEntregados;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

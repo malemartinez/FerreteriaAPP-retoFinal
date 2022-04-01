@@ -1,34 +1,32 @@
 package com.Ferreteria.RetoFinal.Model;
 
+import lombok.NonNull;
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.UUID;
 
 @Document(collection = "Volantes")
 public class Volante {
 
     @Id
-    private String Id;
-    private String nombreProveedor;
-    private LocalDate fecha;
-
-
-
-    private String documentoIproveedor;
-    private HashMap<Producto, Integer> productosEntregados = new HashMap<>();
+    @NonNull private String id;
+    @NonNull private String nombreProveedor;
+  
+    @NonNull private LocalDate fecha;
+    @NonNull private String documentoIproveedor;
+    @NonNull private HashMap<String, Integer> productosEntregados = new HashMap<>();
 
     public Volante() {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getNombreProveedor() {
@@ -47,11 +45,11 @@ public class Volante {
         this.fecha = fecha;
     }
 
-      public HashMap<Producto, Integer> getProductosEntregados() {
+      public HashMap<String, Integer> getProductosEntregados() {
         return productosEntregados;
     }
 
-    public void setProductosEntregados(HashMap<Producto, Integer> productosEntregados) {
+    public void setProductosEntregados(HashMap<String, Integer> productosEntregados) {
         this.productosEntregados = productosEntregados;
     }
     public String getDocumentoIproveedor() {

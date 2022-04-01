@@ -15,12 +15,15 @@ public class Cliente {
     private String celular;
     private String documentoIdentidad;
 
-    public void setId(String id) {
-        this.id = id;
+    public Cliente() {
     }
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {

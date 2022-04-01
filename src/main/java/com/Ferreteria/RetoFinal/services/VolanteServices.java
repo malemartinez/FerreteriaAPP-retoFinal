@@ -1,9 +1,5 @@
 package com.Ferreteria.RetoFinal.services;
-
-import com.Ferreteria.RetoFinal.Model.DTO.ClienteDTO;
-import com.Ferreteria.RetoFinal.Model.DTO.VendedorDTO;
 import com.Ferreteria.RetoFinal.Model.DTO.VolanteDTO;
-import com.Ferreteria.RetoFinal.Model.Vendedor;
 import com.Ferreteria.RetoFinal.Model.Volante;
 import com.Ferreteria.RetoFinal.Repository.VolanteRepository;
 import org.modelmapper.ModelMapper;
@@ -19,9 +15,12 @@ public class VolanteServices {
     VolanteRepository volanteRepository;
     ModelMapper mapper;
 
-    public Mono<Volante> save(VolanteDTO volanteDTO) {
-        var entidad = mapper.map(volanteDTO , Volante.class );
-        return this.volanteRepository.save(entidad);
+    public VolanteServices(ModelMapper mapper) {
+        this.mapper = mapper;
+    }
+
+    public Mono<Volante> save(Volante volante) {
+        return this.volanteRepository.save(volante);
     }
 
     public Flux<Volante> findAll(){
@@ -51,7 +50,7 @@ public class VolanteServices {
                     volante.setDocumentoIproveedor(volanteEntity.getDocumentoIproveedor());
                     volante.setId(volanteEntity.getId());
                     volante.setNombreProveedor(volanteEntity.getNombreProveedor());
-                    return this.save(mapper.map(volante, VolanteDTO.class));
+                    return this.save(volante);
                 })
                 .flatMap( cliente -> Mono.just(mapper.map( cliente , VolanteDTO.class ))  )
                 .switchIfEmpty(Mono.empty());
