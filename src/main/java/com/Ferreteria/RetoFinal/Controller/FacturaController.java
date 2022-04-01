@@ -20,11 +20,16 @@ public class FacturaController {
     FacturaServices facturaServices;
     ModelMapper mapper;
 
+    public FacturaController(ModelMapper mapper) {
+        this.mapper = mapper;
+    }
+
     @PostMapping("/facturas")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<FacturaDTO> save(@RequestBody FacturaDTO facturaDTO) {
-        return this.facturaServices.save(facturaDTO)
-                .flatMap( volante -> Mono.just(mapper.map(volante, FacturaDTO.class)));
+    private Mono<Factura> save(@RequestBody FacturaDTO facturaDTO) {
+        var factura = mapper.map(facturaDTO , Factura.class);
+        return this.facturaServices.save(factura);
+
     }
 
     @GetMapping("/facturas")

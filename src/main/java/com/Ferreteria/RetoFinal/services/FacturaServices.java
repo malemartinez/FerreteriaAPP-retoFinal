@@ -18,9 +18,12 @@ public class FacturaServices {
     FacturaRepository facturaRepository;
     ModelMapper mapper;
 
-    public Mono<Factura> save(FacturaDTO facturaDTO) {
-        var entidad = mapper.map(facturaDTO, Factura.class );
-        return this.facturaRepository.save(entidad);
+    public FacturaServices(ModelMapper mapper) {
+        this.mapper = mapper;
+    }
+
+    public Mono<Factura> save(Factura factura1) {
+        return this.facturaRepository.save(factura1);
     }
 
     public Flux<Factura> findAll(){
@@ -51,7 +54,7 @@ public class FacturaServices {
                     factura.setIdCliente(Entity.getIdCliente());
                     factura.setNombreCliente(Entity.getNombreCliente());
                     factura.setListaProductos(Entity.getListaProductos());
-                    return this.save(mapper.map(factura, FacturaDTO.class));
+                    return this.save(factura);
                 })
                 .flatMap( factura -> Mono.just(mapper.map( factura , FacturaDTO.class ))  )
                 .switchIfEmpty(Mono.empty());
