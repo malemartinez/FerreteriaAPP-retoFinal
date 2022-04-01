@@ -11,6 +11,7 @@ import com.Ferreteria.RetoFinal.services.InventarioServices;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -40,5 +41,14 @@ public class InventarioController {
                 .flatMap( inventario -> Mono.just(mapper.map(inventario, InventarioDTO.class)));
 
     }
+
+//    //modificar producto
+//    @PutMapping("/inventario/productos/{id}")
+//    private Mono<ResponseEntity<Inventario>> update(@PathVariable("id") String id, @RequestBody ProductoDTO productoDTO) {
+//        return this.inventarioServices.update(id, productoDTO);
+////                .flatMap(cliente -> Mono.just(ResponseEntity.ok(cliente)))
+////                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+//
+//    }
 
 }

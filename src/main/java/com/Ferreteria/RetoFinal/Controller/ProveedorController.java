@@ -1,10 +1,8 @@
 package com.Ferreteria.RetoFinal.Controller;
 
-import com.Ferreteria.RetoFinal.Model.Cliente;
-import com.Ferreteria.RetoFinal.Model.DTO.ClienteDTO;
 import com.Ferreteria.RetoFinal.Model.DTO.ProveedorDTO;
 import com.Ferreteria.RetoFinal.Model.Proveedor;
-import com.Ferreteria.RetoFinal.services.ClienteServices;
+
 import com.Ferreteria.RetoFinal.services.ProveedorServices;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +43,7 @@ public class ProveedorController {
 
     }
 
-    @PutMapping("/clientes/{id}")
+    @PutMapping("/proveedor/{id}")
     private Mono<ResponseEntity<ProveedorDTO>> update(@PathVariable("id") String id, @RequestBody ProveedorDTO proveedorDTO) {
         return this.proveedorServices.update(id, proveedorDTO)
                 .flatMap(proveedor -> Mono.just(ResponseEntity.ok(proveedor)))

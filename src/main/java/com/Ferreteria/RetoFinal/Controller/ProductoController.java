@@ -1,10 +1,8 @@
 package com.Ferreteria.RetoFinal.Controller;
 
-import com.Ferreteria.RetoFinal.Model.Cliente;
-import com.Ferreteria.RetoFinal.Model.DTO.ClienteDTO;
 import com.Ferreteria.RetoFinal.Model.DTO.ProductoDTO;
 import com.Ferreteria.RetoFinal.Model.Producto;
-import com.Ferreteria.RetoFinal.services.ClienteServices;
+
 import com.Ferreteria.RetoFinal.services.ProductoServices;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,11 +51,11 @@ public class ProductoController {
 
     }
 
-//    @PutMapping("/productos/{id}")
-//    private Mono<ResponseEntity<ProductoDTO>> update(@PathVariable("id") String id, @RequestBody ProductoDTO productoDTO) {
-//        return this.productoServices.update(id, productoDTO)
-//                .flatMap(cliente -> Mono.just(ResponseEntity.ok(cliente)))
-//                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
-//
-//    }
+    @PutMapping("/productos/{id}")
+    private Mono<ResponseEntity<ProductoDTO>> update(@PathVariable("id") String id, @RequestBody ProductoDTO productoDTO) {
+        return this.productoServices.update(id, productoDTO)
+                .flatMap(cliente -> Mono.just(ResponseEntity.ok(cliente)))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+
+    }
 }

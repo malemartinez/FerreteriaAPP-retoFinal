@@ -5,7 +5,6 @@ import com.Ferreteria.RetoFinal.Model.DTO.ProductoDTO;
 import com.Ferreteria.RetoFinal.Model.Inventario;
 import com.Ferreteria.RetoFinal.Model.Producto;
 import com.Ferreteria.RetoFinal.Repository.InventarioRepository;
-import com.Ferreteria.RetoFinal.Repository.ProductoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +53,7 @@ public class InventarioServices {
                     return Mono.just(inventario) ;
                 });
     }
+
 }
 
 
