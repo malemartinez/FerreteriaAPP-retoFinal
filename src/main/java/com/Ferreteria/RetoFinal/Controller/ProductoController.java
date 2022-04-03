@@ -13,7 +13,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProductoController {
 
     @Autowired
@@ -33,9 +33,9 @@ public class ProductoController {
     }
 
     @GetMapping("/productos")
-    public Flux<ProductoDTO> findAll() {
-        return this.productoServices.findAll()
-                .flatMap( producto -> Mono.just(mapper.map(producto, ProductoDTO.class)));
+    public Flux<Producto> findAll() {
+        return this.productoServices.findAll();
+//                .flatMap( producto -> Mono.just(mapper.map(producto, ProductoDTO.class)));
     }
     @GetMapping("/productos/{id}")
     public Mono<ProductoDTO> findbyID(@PathVariable("id") String id) {

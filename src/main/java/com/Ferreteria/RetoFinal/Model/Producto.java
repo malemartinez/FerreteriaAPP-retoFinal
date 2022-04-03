@@ -3,7 +3,6 @@ package com.Ferreteria.RetoFinal.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.UUID;
 
 @Document(collection = "Inventario")
 public class Producto {
